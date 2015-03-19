@@ -1,0 +1,33 @@
+{
+	"name": "market-order-ticket",
+	"description": "Market Order Ticket.",
+	"main": "index.js",
+	"dependencies": {
+		"flummox": "latest",
+		"react": "latest"
+	},
+	"devDependencies": {
+		"mocha": "latest",
+		"chai": "latest",
+		"jsdom": "~3.0.0",
+		"karma": "latest",
+		"karma-cli": "latest",
+		"karma-chrome-launcher": "latest",
+		"karma-mocha": "latest",
+		"karma-browserify": "latest",
+		"babel": "latest",
+		"babelify": "latest",
+		"browserify": "latest",
+		"watchify": "latest"
+	},
+	"scripts": {
+		"build": "browserify test/tests.spec.js -t babelify -o bin/tests.min.js",
+		"build:watch": "watchify test/tests.spec.js -t babelify -o bin/tests.min.js",
+
+		"test": "mocha --compilers js:babel/register test",
+		"test:watch": "npm run test -- -w",
+
+		"test-browser": "karma start --single-run",
+		"test-browser:watch": "karma start"
+	}
+}
