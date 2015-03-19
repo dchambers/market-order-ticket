@@ -24,6 +24,6 @@ describe('MarketOrderTicket', function() {
 	it('provides the context to any child components', function() {
 		// TODO: this test can be deleted once the ticket genuinely relies on contexts to work
 		React.render(<MarketOrderTicket/>, document.body);
-		expect(document.body.querySelector('.MarketOrderTicket__name').textContent).to.equal('Dominic');
+		expect(document.body.querySelector('.MarketOrderTicket__name').textContent).to.equal('MarketOrderTicket');
 	});
 });

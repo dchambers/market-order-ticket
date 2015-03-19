@@ -11,7 +11,7 @@ export default class MarketOrderTicket extends React.Component {
 	}
 
 	getChildContext() {
-		return {flux: new Flux(), name: 'Dominic'};
+		return {flux: new Flux(), componentName: 'MarketOrderTicket'};
 	}
 
 	handleChange(event) {
@@ -31,4 +31,4 @@ export default class MarketOrderTicket extends React.Component {
 
 MarketOrderTicket.propTypes = { initialAmount: React.PropTypes.number };
 MarketOrderTicket.defaultProps = { initialAmount: 0 };
-MarketOrderTicket.childContextTypes = { flux: React.PropTypes.any, name: React.PropTypes.string.isRequired };
+MarketOrderTicket.childContextTypes = { flux: React.PropTypes.any, componentName: React.PropTypes.string.isRequired };
