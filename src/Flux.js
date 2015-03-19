@@ -3,6 +3,7 @@ import { Actions, Store, Flummox } from 'flummox';
 
 class MessageActions extends Actions {
 	newMessage(content) {
+console.log('new message: ' + content);
 		return content; // automatically dispatched
 	}
 }
