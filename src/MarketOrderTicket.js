@@ -1,5 +1,15 @@
 'use strict';
 
+/*
+instrument (prop)
+amount (user input state)
+longPrice (state derived from order book)
+shortPrice (state derived from order book)
+state: awaitingMarketData -> awaitingOrder -> awaitingOrderAck -> (orderAckConfirmed) | (orderAckDenied -> awaitingOrder)
+(component managed state)
+amountVolumeHistogram (state derived from order book)
+*/
+
 import React from 'react';
 import Flux from './Flux';
 import InnerComponent from './InnerComponent';
@@ -21,6 +31,7 @@ export default class MarketOrderTicket extends React.Component {
 	render() {
 		return (
 			<div className="MarketOrderTicket">
+				<span className="MarketOrderTicket__instrument">{this.props.instrument}</span>
 				<input type="number" className="MarketOrderTicket__amount" value={this.state.amount}
 				 onChange={this.handleChange.bind(this)}/>
 				<InnerComponent/>
@@ -29,6 +40,14 @@ export default class MarketOrderTicket extends React.Component {
 	}
 }
 
-MarketOrderTicket.propTypes = { initialAmount: React.PropTypes.number };
+MarketOrderTicket.propTypes = {
+	instrument: React.PropTypes.string.isRequired,
+	initialAmount: React.PropTypes.number.isRequired
+};
+
 MarketOrderTicket.defaultProps = { initialAmount: 0 };
-MarketOrderTicket.childContextTypes = { flux: React.PropTypes.any, componentName: React.PropTypes.string.isRequired };
+
+MarketOrderTicket.childContextTypes = {
+	componentName: React.PropTypes.string.isRequired,
+	flux: React.PropTypes.any.isRequired
+};
