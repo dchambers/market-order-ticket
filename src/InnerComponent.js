@@ -10,4 +10,6 @@ export default class InnerComponent extends React.Component {
 	}
 }
 
-InnerComponent.contextTypes = { componentName: React.PropTypes.string.isRequired };
+InnerComponent.contextTypes = {
+	componentName: React.PropTypes.string.isRequired
+};

@@ -17,15 +17,22 @@ import InnerComponent from './InnerComponent';
 export default class MarketOrderTicket extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {amount:props.initialAmount};
+		this.state = {
+			amount:props.initialAmount
+		};
 	}
 
 	getChildContext() {
-		return {flux: new Flux(), componentName: 'MarketOrderTicket'};
+		return {
+			flux: new Flux(),
+			componentName: 'MarketOrderTicket'
+		};
 	}
 
 	handleChange(event) {
-		this.setState({amount: event.target.value});
+		this.setState({
+			amount: event.target.value
+		});
 	}
 
 	render() {
@@ -45,7 +52,9 @@ MarketOrderTicket.propTypes = {
 	initialAmount: React.PropTypes.number.isRequired
 };
 
-MarketOrderTicket.defaultProps = { initialAmount: 0 };
+MarketOrderTicket.defaultProps = {
+	initialAmount: 0
+};
 
 MarketOrderTicket.childContextTypes = {
 	componentName: React.PropTypes.string.isRequired,
