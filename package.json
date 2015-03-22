@@ -19,7 +19,8 @@
 		"babel": "latest",
 		"babelify": "latest",
 		"browserify": "latest",
-		"watchify": "latest"
+		"watchify": "latest",
+		"eslint": "latest"
 	},
 	"scripts": {
 		"build": "browserify test/tests.spec.js -t babelify -o bin/tests.min.js",
@@ -29,6 +30,8 @@
 		"test:watch": "npm run test -- -w",
 
 		"karma": "karma start --single-run",
-		"karma:watch": "karma start"
+		"karma:watch": "karma start",
+
+		"lint": "eslint src test"
 	}
 }

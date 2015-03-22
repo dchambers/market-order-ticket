@@ -44,8 +44,8 @@ import InnerComponent from './InnerComponent';
 export default class MarketOrderTicket extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = Immutable.Map({
-			amount:props.initialAmount
+		this.state = new Immutable.Map({
+			amount: props.initialAmount
 		});
 	}
 
@@ -67,7 +67,7 @@ export default class MarketOrderTicket extends React.Component {
 			<div className="MarketOrderTicket">
 				<span className="MarketOrderTicket__instrument">{this.props.instrument}</span>
 				<input type="number" className="MarketOrderTicket__amount" value={this.state.get('amount')}
-				 onChange={this.handleChange.bind(this)}/>
+					onChange={this.handleChange.bind(this)}/>
 				<InnerComponent/>
 			</div>
 		);

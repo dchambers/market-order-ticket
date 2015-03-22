@@ -1,3 +1,5 @@
+'use strict';
+
 // TODO: understand what to do with all of this boilerplate
 import { Actions, Store, Flummox } from 'flummox';
 
@@ -25,8 +27,8 @@ class MarketOrderStore extends Store {
 		this.setState({
 			[id]: {
 				content,
-				id,
-			},
+				id
+			}
 		});
 	}
 }
