@@ -4,7 +4,8 @@
 	"main": "index.js",
 	"dependencies": {
 		"flummox": "latest",
-		"react": "latest"
+		"react": "latest",
+		"immutable": "latest"
 	},
 	"devDependencies": {
 		"mocha": "latest",
