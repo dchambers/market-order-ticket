@@ -28,7 +28,7 @@
 		"test": "mocha --compilers js:babel/register test",
 		"test:watch": "npm run test -- -w",
 
-		"test-browser": "karma start --single-run",
-		"test-browser:watch": "karma start"
+		"karma": "karma start --single-run",
+		"karma:watch": "karma start"
 	}
 }
