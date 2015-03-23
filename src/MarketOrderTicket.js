@@ -52,17 +52,18 @@ state: awaitingMarketData -> awaitingOrder -> awaitingOrderAck -> (orderAckConfi
 amountVolumeHistogram (state derived from order book)
 */
 
+import FluxComponent from 'flummox/component';
 import React from 'react';
 import Immutable from 'immutable';
 import InnerComponent from './InnerComponent';
 
 const awaitingMarketData = 1;
-const awaitingOrder = 2;
-const awaitingOrderAck = 3;
-const orderAckConfirmed = 4;
-const orderAckDenied = 5;
-const orderFilled = 6;
-const orderFailed = 7;
+// const awaitingOrder = 2;
+// const awaitingOrderAck = 3;
+// const orderAckConfirmed = 4;
+// const orderAckDenied = 5;
+// const orderFilled = 6;
+// const orderFailed = 7;
 
 export default class MarketOrderTicket extends React.Component {
 	constructor(props) {
@@ -90,19 +91,20 @@ export default class MarketOrderTicket extends React.Component {
 
 	render() {
 		return (
-			<div className="MarketOrderTicket">
-				<span className="MarketOrderTicket__instrument">{this.props.instrument}</span>
-				<input type="number" className="MarketOrderTicket__amount" value={this.state.get('amount')}
-					onChange={this.handleChange.bind(this)}/>
-				<InnerComponent/>
-			</div>
+			<FluxComponent connectToStores={['active-order', 'order-book', 'order-quote']}>
+				<div className="MarketOrderTicket">
+					<span className="MarketOrderTicket__instrument">{this.props.flux.instrument}</span>
+					<input type="number" className="MarketOrderTicket__amount" value={this.state.get('amount')}
+						onChange={this.handleChange.bind(this)}/>
+					<InnerComponent/>
+				</div>
+			</FluxComponent>
 		);
 	}
 }
 
 MarketOrderTicket.propTypes = {
 	flux: React.PropTypes.any.isRequired,
-	instrument: React.PropTypes.string.isRequired,
 	initialAmount: React.PropTypes.number.isRequired
 };
 
