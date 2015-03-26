@@ -52,67 +52,36 @@ state: awaitingMarketData -> awaitingOrder -> awaitingOrderAck -> (orderAckConfi
 amountVolumeHistogram (state derived from order book)
 */
 
-import FluxComponent from 'flummox/component';
 import React from 'react';
-import Immutable from 'immutable';
-import InnerComponent from './InnerComponent';
-
-const awaitingMarketData = 1;
-// const awaitingOrder = 2;
-// const awaitingOrderAck = 3;
-// const orderAckConfirmed = 4;
-// const orderAckDenied = 5;
-// const orderFilled = 6;
-// const orderFailed = 7;
+import FluxComponent from 'flummox/component';
+import MarketOrderView from './MarketOrderView';
 
 export default class MarketOrderTicket extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = new Immutable.Map({
-			amount: props.initialAmount,
-			state: awaitingMarketData,
-			longPrice: null,
-			shortPrice: null
-		});
+		props.flux.getActions('order-book').centerWindow();
+		props.flux.getActions('order-quote').setAmount(props.initialAmount);
 	}
 
 	getChildContext() {
 		return {
-			flux: this.props.flux,
-			componentName: 'MarketOrderTicket'
+			flux: this.props.flux
 		};
-	}
-
-	handleChange(event) {
-		this.setState({
-			amount: event.target.value
-		});
 	}
 
 	render() {
 		return (
 			<FluxComponent connectToStores={['active-order', 'order-book', 'order-quote']}>
-				<div className="MarketOrderTicket">
-					<span className="MarketOrderTicket__instrument">{this.props.flux.instrument}</span>
-					<input type="number" className="MarketOrderTicket__amount" value={this.state.get('amount')}
-						onChange={this.handleChange.bind(this)}/>
-					<InnerComponent/>
-				</div>
+				<MarketOrderView initialAmount={this.props.initialAmount}/>
 			</FluxComponent>
 		);
 	}
 }
 
 MarketOrderTicket.propTypes = {
-	flux: React.PropTypes.any.isRequired,
-	initialAmount: React.PropTypes.number.isRequired
-};
-
-MarketOrderTicket.defaultProps = {
-	initialAmount: 0
+	flux: React.PropTypes.any.isRequired
 };
 
 MarketOrderTicket.childContextTypes = {
-	componentName: React.PropTypes.string.isRequired,
 	flux: React.PropTypes.any.isRequired
 };

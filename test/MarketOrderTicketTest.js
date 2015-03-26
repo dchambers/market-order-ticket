@@ -26,10 +26,4 @@ describe('MarketOrderTicket', function() {
 		React.render(<MarketOrderTicket flux={new Flux('ACME.N')} initialAmount={100}/>, document.body);
 		expect(document.body.querySelector('.MarketOrderTicket__amount').value).to.equal('100');
 	});
-
-	it('provides the context to any child components', function() {
-		// TODO: this test can be deleted once the ticket genuinely relies on contexts to work
-		React.render(<MarketOrderTicket flux={new Flux('ACME.N')}/>, document.body);
-		expect(document.body.querySelector('.MarketOrderTicket__name').textContent).to.equal('MarketOrderTicket');
-	});
 });
