@@ -14,13 +14,11 @@ export default class Flux extends Flummox {
 		// TODO: type check all constructor arguments
 		super();
 
-		this.instrument = instrument;
-
 		this.createActions('active-order', ActiveOrderActions, instrument);
 		this.createActions('order-book', OrderBookActions, instrument);
 		this.createActions('order-quote', OrderQuoteActions, instrument);
 
-		this.createStore('active-order', ActiveOrderStore, this);
+		this.createStore('active-order', ActiveOrderStore, this, instrument);
 		this.createStore('order-book', OrderBookStore, this);
 		this.createStore('order-quote', OrderQuoteStore, this);
 	}

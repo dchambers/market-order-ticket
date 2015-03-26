@@ -29,7 +29,7 @@ export default class MarketOrderView extends React.Component {
 	render() {
 		return (
 			<div className="MarketOrderTicket">
-				<span className="MarketOrderTicket__instrument">{this.context.flux.instrument}</span>
+				<span className="MarketOrderTicket__instrument">{this.context.flux.getStore('active-order').state.instrument}</span>
 				<input type="number" className="MarketOrderTicket__amount" value={this.state.get('amount')}
 					onChange={this.handleChange.bind(this)}/>
 			</div>

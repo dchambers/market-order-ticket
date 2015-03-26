@@ -5,11 +5,11 @@ import Immutable from 'immutable';
 import ActiveOrderRecord from './ActiveOrderRecord';
 
 export default class ActiveOrderStore extends Store {
-	constructor(flux) {
+	constructor(flux, instrument) {
 		super();
 
 		this.register(flux.getActions('active-order').updateOrder, this.handleOrderUpdate);
-		this.state = new ActiveOrderRecord();
+		this.state = (new ActiveOrderRecord()).set('instrument', instrument);
 	}
 
 	handleOrderUpdate(orderUpdate) {
