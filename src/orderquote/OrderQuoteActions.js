@@ -4,6 +4,7 @@ import { Actions } from 'flummox';
 
 export default class OrderQuoteActions extends Actions {
 	constructor(instrument) {
+		super();
 		this.instrument = instrument;
 	}
 
